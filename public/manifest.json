@@ -1,6 +1,6 @@
 {
-  "short_name": "ReactSS",
-  "name": "ReactSS - One tab to rule them all",
+  "short_name": "FeedFox",
+  "name": "FeedFox - RSS Reader",
   "icons": [
     {
       "src": "favicon.ico",

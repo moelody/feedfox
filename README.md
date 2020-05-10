@@ -1,6 +1,6 @@
-# ReactSS
+# FeedFox
 
-ReactSS is a modern RSS reader that can play youtube videos, listen to podcasts, download torrents and view cat GIFs 😾
+FeedFox is a modern RSS reader that allows you to play youtube videos, listen to podcasts, download torrents, browser reddit, twitter and view cat GIFs 😾
 
 # Running it locally
 
@@ -26,6 +26,5 @@ Then run <code>npm install && npm run start</code>
 
 # TODO
 
-1. Group feeds by Tags
-2. Responsive Design
-3. Better podcast player
+1. Mobile layout
+2. Better podcast player

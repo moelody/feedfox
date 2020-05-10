@@ -25,18 +25,11 @@ const Header = () => (
   <>
     <Wrapper>
       <Link to="/">
-        <h1>ReactSS</h1>
+        <h1>FeedFox</h1>
       </Link>
       <ToggleTheme />
       <ChangeAccent />
     </Wrapper>
-
-    <span>
-      One Tab To Rule Them All{" "}
-      <span aria-label="fire" role="img">
-        🔥
-      </span>
-    </span>
   </>
 );
 
