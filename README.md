@@ -18,11 +18,11 @@ Then run <code>npm install && npm run start</code>
 
 ## Dark
 
-![Dark](screenshots/dark-theme.png)
+![Dark](screenshots/dark-theme-stuckmann.png)
 
 ## Light
 
-![Light](screenshots/light-theme.png)
+![Light](screenshots/light-theme-stripe.png)
 
 # TODO
 
