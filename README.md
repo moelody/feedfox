@@ -24,7 +24,10 @@ Then run <code>npm install && npm run start</code>
 
 ![Light](screenshots/light-theme-stripe.png)
 
+## Mobile layout
+![Dark](screenshots/mobile-dark-theme.png)    ![Light](screenshots/mobile-light-theme.png)
+
 # TODO
 
-1. Mobile layout
+1. Mobile layout [DONE🥳]
 2. Better podcast player

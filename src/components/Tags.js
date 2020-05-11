@@ -19,18 +19,25 @@ const Wrapper = styled.div`
   }
 `;
 
-const Tags = () => {
+const Tags = ({ setNavOpen }) => {
   const { userFeeds } = useContext(FeedContext);
 
   const tagList = userFeeds.map((userFeed) => userFeed.tags);
   let tags = [].concat.apply([], tagList);
   tags = [...new Set(tags)];
 
+  // close nav
+  const closeNav = () => {
+    if (setNavOpen) {
+      setNavOpen(false);
+    }
+  };
+
   return (
     <Wrapper>
       {tags.length
         ? tags.map((tag) => (
-            <Link key={tag} to={`/tags/${tag}`}>
+            <Link onClick={closeNav} key={tag} to={`/tags/${tag}`}>
               <h3>
                 <LightningIcon />
                 {tag}

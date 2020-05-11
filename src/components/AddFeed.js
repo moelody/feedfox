@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const AddFeed = () => {
+const AddFeed = ({ setNavOpen }) => {
   const title = useInput("");
   const url = useInput("");
   const tags = useInput("");
@@ -68,6 +68,10 @@ const AddFeed = () => {
     title.setValue("");
     url.setValue("");
     tags.setValue("");
+
+    if (setNavOpen) {
+      setNavOpen(false);
+    }
   };
 
   return (

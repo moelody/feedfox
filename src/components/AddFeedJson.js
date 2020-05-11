@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default () => {
+export default ({ setNavOpen }) => {
   const { setUserFeeds } = useContext(FeedContext);
 
   const onChange = (e) => {
@@ -33,6 +33,9 @@ export default () => {
     fr.addEventListener("load", () => {
       const { userFeeds } = JSON.parse(fr.result);
       setUserFeeds(userFeeds);
+      if (setNavOpen) {
+        setNavOpen(false);
+      }
     });
     fr.readAsText(e.target.files[0]);
   };

@@ -9,7 +9,6 @@ import NoFeeds from "../components/NoFeeds";
 
 export default () => {
   const { tag } = useParams();
-  console.log(tag);
 
   const { userFeeds } = useContext(FeedContext);
 
