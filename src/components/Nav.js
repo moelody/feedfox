@@ -7,7 +7,6 @@ import AddFeedJson from "./AddFeedJson";
 import Tags from "./Tags";
 
 const MenuNav = styled(motion.nav)`
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +16,7 @@ const MenuNav = styled(motion.nav)`
   z-index: 2;
   padding: 1rem;
 
-  svg.close-nav {
+  .close-nav {
     fill: ${(props) => props.theme.accent};
     cursor: pointer;
     width: 30px;
@@ -25,18 +24,30 @@ const MenuNav = styled(motion.nav)`
     margin: 0.2rem 0;
   }
 
-  svg.close-nav:hover {
+  .close-nav:hover {
     fill: ${(props) => props.theme.red};
-  }
-
-  @media screen and (max-width: 530px) {
-    justify-content: space-between;
   }
 `;
 
 const variants = {
   open: { x: 0 },
-  closed: { x: "-100%" },
+  closed: { x: "-100%", transition: { delay: 0.3 } },
+};
+
+const ulVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.2,
+      // staggerDirection: -1,
+    },
+  },
+  closed: {},
+};
+
+const liVariants = {
+  open: { y: 0, opacity: 1 },
+  closed: { y: -20, opacity: 0 },
 };
 
 const Nav = ({ navOpen, setNavOpen }) => {
@@ -45,13 +56,19 @@ const Nav = ({ navOpen, setNavOpen }) => {
       variants={variants}
       initial="closed"
       animate={navOpen ? "open" : "closed"}
-      transition={{ damping: 300 }}
+      transition={{ damping: 1000 }}
     >
-      <ul>
-        <AddFeed setNavOpen={setNavOpen} />
-        <AddFeedJson setNavOpen={setNavOpen} />
-        <Tags setNavOpen={setNavOpen} />
-      </ul>
+      <motion.ul variants={ulVariants}>
+        <motion.li variants={liVariants}>
+          <AddFeed setNavOpen={setNavOpen} />
+        </motion.li>
+        <motion.li variants={liVariants}>
+          <AddFeedJson />
+        </motion.li>
+        <motion.li className="li" variants={liVariants}>
+          <Tags setNavOpen={setNavOpen} />
+        </motion.li>
+      </motion.ul>
       <CloseIcon className="close-nav" onClick={() => setNavOpen(false)} />
     </MenuNav>
   );

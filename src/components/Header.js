@@ -16,11 +16,13 @@ const Wrapper = styled.div`
     margin-right: 0.8rem;
   }
 
-  svg.nav {
+  .nav {
     display: none;
     fill: ${(props) => props.theme.color};
-    margin-right: 0.6rem;
+    margin-right: 0.4rem;
     cursor: pointer;
+    position: relative;
+    top: 4px;
   }
 
   svg {
@@ -28,7 +30,7 @@ const Wrapper = styled.div`
   }
 
   @media screen and (max-width: 530px) {
-    svg.nav {
+    .nav {
       display: block;
     }
   }

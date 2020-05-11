@@ -1,13 +1,28 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedContext";
-import { LightningIcon } from "./Icons";
+import { LightningIcon, ShuffleIcon } from "./Icons";
+import { shuffle } from "../utils";
 
 const Wrapper = styled.div`
   margin: 0.6rem 0;
 
-  h3 {
+  .shuffle {
+    cursor: pointer;
+
+    h3 {
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  h4 {
     margin-bottom: 1rem;
   }
 
@@ -16,11 +31,6 @@ const Wrapper = styled.div`
     position: relative;
     top: 5px;
     margin-right: 0.5rem;
-  }
-
-  @media screen and (max-width: 400px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
@@ -31,25 +41,40 @@ const Tags = ({ setNavOpen }) => {
   let tags = [].concat.apply([], tagList);
   tags = [...new Set(tags)];
 
-  // close nav
+  const [filteredTags, setFilteredTags] = useState(tags);
+
   const closeNav = () => {
-    if (setNavOpen) {
-      setNavOpen(false);
-    }
+    if (setNavOpen) setNavOpen(false);
   };
+
+  const shuffleTags = () => setFilteredTags([...shuffle(filteredTags)]);
 
   return (
     <Wrapper>
-      {tags.length
-        ? tags.map((tag) => (
-            <Link onClick={closeNav} key={tag} to={`/tags/${tag}`}>
-              <h3>
-                <LightningIcon />
-                {tag}
-              </h3>
-            </Link>
-          ))
-        : null}
+      {filteredTags.length ? (
+        <span
+          className="shuffle"
+          onClick={shuffleTags}
+          style={{ display: "inline-block", marginBottom: "1rem" }}
+        >
+          <h3>
+            <ShuffleIcon />
+            Shuffle Tags
+          </h3>
+        </span>
+      ) : null}
+      <div className="tags">
+        {filteredTags.length
+          ? filteredTags.map((tag) => (
+              <Link onClick={closeNav} key={tag} to={`/tags/${tag}`}>
+                <motion.h4 positionTransition={{ damping: 100, stiffness: 50 }}>
+                  <LightningIcon />
+                  {tag}
+                </motion.h4>
+              </Link>
+            ))
+          : null}
+      </div>
     </Wrapper>
   );
 };

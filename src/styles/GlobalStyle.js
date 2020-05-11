@@ -4,6 +4,7 @@ export default createGlobalStyle`
 	html {
 		font-size: 16px;
 		box-sizing: border-box;
+		overflow: hidden;
 	}
 
 	*, *:before, *:after {
@@ -19,6 +20,7 @@ export default createGlobalStyle`
 		background: ${(props) => props.theme.bg};
 		color: ${(props) => props.theme.color};
 		line-height: 1.7;
+    transition: background 400ms ease-in-out, color 800ms ease-in-out;
 	}
 
 	body::-webkit-scrollbar {

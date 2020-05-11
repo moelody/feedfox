@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
+import LoadJson from "./LoadJson";
 import { AddFileIcon } from "./Icons";
 import { FeedContext } from "../context/FeedContext";
 
 const Wrapper = styled.div`
-  margin: 1.5rem 0;
+  margin: 1.8rem 0;
+  display: flex;
 
   label {
     display: flex;
@@ -25,7 +27,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default ({ setNavOpen }) => {
+export default () => {
   const { setUserFeeds } = useContext(FeedContext);
 
   const onChange = (e) => {
@@ -42,9 +44,7 @@ export default ({ setNavOpen }) => {
           return toast.error("The JSON structure failed to match 😭");
 
         setUserFeeds(userFeeds);
-        if (setNavOpen) {
-          setNavOpen(false);
-        }
+        toast.success("Your feeds have been updated 🥳");
       } catch (err) {
         return toast.error("The file is not valid JSON 😭");
       }
@@ -54,11 +54,14 @@ export default ({ setNavOpen }) => {
 
   return (
     <Wrapper>
-      <label htmlFor="file-icon">
-        <AddFileIcon />
-        <h3>Import Json</h3>
-      </label>
-      <input id="file-icon" type="file" onChange={onChange} required={true} />
+      <div>
+        <label htmlFor="file-icon">
+          <AddFileIcon />
+          <h3>Import Json</h3>
+        </label>
+        <input id="file-icon" type="file" onChange={onChange} required={true} />
+      </div>
+      <LoadJson />
     </Wrapper>
   );
 };

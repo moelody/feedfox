@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export default styled.div`
+export default styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,6 +11,7 @@ export default styled.div`
   box-shadow: ${(props) => props.theme.bs1};
   border-radius: 4px;
   width: 90%;
+  cursor: pointer;
 
   p,
   span {

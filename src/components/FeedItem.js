@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useTransform,
+  useMotionValue,
+} from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import FeedCard from "../styles/FeedCard";
 import { slugifyTitle, timeSince } from "../utils";
 import { LinkIcon } from "../components/Icons";
 
 const FeedItem = ({ item }) => {
+  // drag to dismiss functionality
+  const [feedCardActive, setFeedCardActive] = useState(true);
+  const x = useMotionValue(0);
+  const opacity = useTransform(x, [-100, 0, 100], [0, 1, 0]);
+
   const { feed } = useParams();
   const titleSlug = slugifyTitle(item.title);
 
@@ -18,36 +29,54 @@ const FeedItem = ({ item }) => {
   }
 
   return (
-    <FeedCard>
-      <div>
-        <Link
-          to={{
-            pathname: `${feed}/${titleSlug}`,
-            item,
-          }}
+    <AnimatePresence>
+      {feedCardActive && (
+        <motion.div
+          exit={{ height: 0, opacity: 0, overflow: "hidden" }}
+          transition={{ opacity: { duration: 0 } }}
         >
-          <h3>{title}</h3>
-        </Link>
-
-        <div className="feed-info">
-          <Link
-            to={{
-              pathname: `${feed}/${titleSlug}`,
-              item,
+          <FeedCard
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            style={{ x, opacity }}
+            onDragEnd={(event, info) => {
+              if (Math.abs(info.offset.x) > 100) {
+                setFeedCardActive(false);
+              }
             }}
           >
-            {item.author && <span>{author}</span>}
-            {item.author && <span>·</span>}
+            <div>
+              <Link
+                to={{
+                  pathname: `${feed}/${titleSlug}`,
+                  item,
+                }}
+              >
+                <h3>{title}</h3>
+              </Link>
 
-            <span>{timeSince(item.pubDate)} ago</span>
-          </Link>
-        </div>
-      </div>
+              <div className="feed-info">
+                <Link
+                  to={{
+                    pathname: `${feed}/${titleSlug}`,
+                    item,
+                  }}
+                >
+                  {item.author && <span>{author}</span>}
+                  {item.author && <span>·</span>}
 
-      <a href={item.link} target="_blank" rel="noopener noreferrer">
-        <LinkIcon />
-      </a>
-    </FeedCard>
+                  <span>{timeSince(item.pubDate)} ago</span>
+                </Link>
+              </div>
+            </div>
+
+            <a href={item.link} target="_blank" rel="noopener noreferrer">
+              <LinkIcon />
+            </a>
+          </FeedCard>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
