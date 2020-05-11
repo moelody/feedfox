@@ -5,7 +5,7 @@ import { FeedContext } from "../context/FeedContext";
 import { LightningIcon } from "./Icons";
 
 const Wrapper = styled.div`
-  margin: 1rem 0;
+  margin: 0.6rem 0;
 
   h3 {
     margin-bottom: 1rem;

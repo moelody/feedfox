@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import { toast } from "react-toastify";
+import { FeedContext } from "../context/FeedContext";
 import useInput from "../hooks/useInput";
 import { AddIcon } from "./Icons";
-import { FeedContext } from "../context/FeedContext";
 
 const Wrapper = styled.div`
   padding: 1rem;
@@ -59,13 +61,35 @@ const AddFeed = ({ setNavOpen }) => {
   const title = useInput("");
   const url = useInput("");
   const tags = useInput("");
-  const { setUserFeeds } = useContext(FeedContext);
+  const { userFeeds, setUserFeeds } = useContext(FeedContext);
 
-  const handleAddFeed = (e) => {
+  const handleAddFeed = async (e) => {
     e.preventDefault();
+
+    if (!title.value || !url.value)
+      return toast.error("You need to enter the title and url 😭");
 
     let tagList = tags.value ? tags.value.split(",") : [];
     tagList = tagList.map((tag) => tag.trim());
+
+    // make sure the title and url is present already
+    const match = userFeeds.filter(
+      (userFeed) =>
+        userFeed.title.includes(title.value.trim()) ||
+        userFeed.url.includes(url.value.trim())
+    );
+    if (match.length)
+      return toast.error("The title or url is already present 😭");
+
+    // notify the user if the url is not valid rss
+    try {
+      const apiKey = process.env.REACT_APP_API_KEY;
+      const res = await axios.get(
+        `https://api.rss2json.com/v1/api.json?rss_url=${url.value.trim()}&api_key=${apiKey}&count=25`
+      );
+    } catch (err) {
+      return toast.error("The url is not valid rss 😭");
+    }
 
     setUserFeeds((userFeeds) => [
       ...userFeeds,
@@ -94,14 +118,12 @@ const AddFeed = ({ setNavOpen }) => {
             placeholder="Prisma"
             value={title.value}
             onChange={title.onChange}
-            required={true}
           />
           <input
-            type="url"
+            type="text"
             placeholder="https://www.prisma.io/blog/rss.xml"
             value={url.value}
             onChange={url.onChange}
-            required={true}
           />
           <input
             type="text"

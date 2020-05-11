@@ -11,7 +11,6 @@ const Home = () => {
   const [feeds, setFeeds] = useState([]);
 
   const apiKey = process.env.REACT_APP_API_KEY;
-  console.log(apiKey);
 
   const urls = userFeeds.map(
     (userFeed) =>
@@ -33,7 +32,11 @@ const Home = () => {
   return (
     <div>
       <Header />
-      {!urls.length ? <NoFeeds /> : <FeedList feeds={feeds} />}
+      {!urls.length ? (
+        <NoFeeds text="Add feeds to consume your content" />
+      ) : (
+        <FeedList feeds={feeds} />
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import MonkeySearch from "../assets/no-feed.png";
+import MonkeySearch from "../assets/monkey-search.png";
 
 const hueRotate = keyframes`
 	from {
@@ -26,12 +26,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const NoFeeds = () => {
+const NoFeeds = ({ text }) => {
   return (
     <Wrapper style={{ marginTop: "1.5rem" }}>
-      <h3 style={{ marginBottom: "1rem" }}>
-        Add feeds to consume your content
-      </h3>
+      <h3 style={{ marginBottom: "1rem" }}>{text}</h3>
       <img src={MonkeySearch} alt="no-feed" />
     </Wrapper>
   );

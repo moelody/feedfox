@@ -2,6 +2,8 @@
 
 FeedFox is a modern RSS reader that allows you to play youtube videos, listen to podcasts, download torrents, browser reddit, twitter and view cat GIFs 😾
 
+Checkout 👉 [FeedFox](https://feedfox.netlify.com)
+
 # Running it locally
 You need to create a .env file at the root of the project. 
 

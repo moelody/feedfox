@@ -36,7 +36,11 @@ export default () => {
   return (
     <div>
       <Header />
-      {!urls.length ? <NoFeeds /> : <FeedList feeds={feeds} />}
+      {!urls.length ? (
+        <NoFeeds text="No feeds exist for this tag, add a new one" />
+      ) : (
+        <FeedList feeds={feeds} />
+      )}
     </div>
   );
 };

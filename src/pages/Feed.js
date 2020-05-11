@@ -5,6 +5,7 @@ import FeedItem from "../components/FeedItem";
 import { FeedContext } from "../context/FeedContext";
 import { slugify } from "../utils";
 import Header from "../components/Header";
+import NotFound from "../components/NotFound";
 
 const Feed = () => {
   const [items, setItems] = useState([]);
@@ -18,6 +19,7 @@ const Feed = () => {
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const getFeedItems = async () => {
+    if (!match.length) return null;
     const {
       data: { items },
     } = await axios.get(
@@ -27,16 +29,17 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    if (!match.length) return null;
     getFeedItems();
   }, []);
 
   return (
     <div>
       <Header />
-      {items && items.length
-        ? items.map((item) => <FeedItem key={item.title} item={item} />)
-        : null}
+      {match.length ? (
+        items.map((item) => <FeedItem key={item.title} item={item} />)
+      ) : (
+        <NotFound />
+      )}
     </div>
   );
 };

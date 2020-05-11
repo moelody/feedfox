@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 import { AddFileIcon } from "./Icons";
 import { FeedContext } from "../context/FeedContext";
 
@@ -31,10 +32,21 @@ export default ({ setNavOpen }) => {
     const fr = new FileReader();
 
     fr.addEventListener("load", () => {
-      const { userFeeds } = JSON.parse(fr.result);
-      setUserFeeds(userFeeds);
-      if (setNavOpen) {
-        setNavOpen(false);
+      try {
+        const userFeeds = JSON.parse(fr.result);
+        const type = Object.prototype.toString.call(userFeeds);
+        console.log(type);
+
+        // update the context and close the nav if on mobile
+        if (type !== "[object Array]")
+          return toast.error("The JSON structure failed to match 😭");
+
+        setUserFeeds(userFeeds);
+        if (setNavOpen) {
+          setNavOpen(false);
+        }
+      } catch (err) {
+        return toast.error("The file is not valid JSON 😭");
       }
     });
     fr.readAsText(e.target.files[0]);

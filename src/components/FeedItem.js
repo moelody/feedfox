@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import FeedCard from "../styles/FeedCard";
 import { slugifyTitle, timeSince } from "../utils";
-import { LinkIcon, MagnetIcon } from "../components/Icons";
+import { LinkIcon } from "../components/Icons";
 
 const FeedItem = ({ item }) => {
   const { feed } = useParams();
@@ -14,14 +14,8 @@ const FeedItem = ({ item }) => {
 
   // for twitter feed items
   if (item.guid && item.guid.includes("twitter.com")) {
-    title = title.substr(0, 80) + "...";
+    title = title.substr(0, 50) + "...";
   }
-
-  // for magnet links
-  const torrentFeed =
-    item.enclosure &&
-    item.enclosure.link &&
-    item.enclosure.link.includes("magnet");
 
   return (
     <FeedCard>
@@ -47,12 +41,6 @@ const FeedItem = ({ item }) => {
 
             <span>{timeSince(item.pubDate)} ago</span>
           </Link>
-
-          {torrentFeed && (
-            <a href={item.enclosure.link}>
-              <MagnetIcon />
-            </a>
-          )}
         </div>
       </div>
 

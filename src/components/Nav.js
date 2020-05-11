@@ -14,7 +14,7 @@ const MenuNav = styled(motion.nav)`
   min-height: 100vh;
   width: 100vw;
   background: ${(props) => props.theme.bg};
-  z-index: 99;
+  z-index: 2;
   padding: 1rem;
 
   svg.close-nav {
@@ -22,7 +22,7 @@ const MenuNav = styled(motion.nav)`
     cursor: pointer;
     width: 30px;
     height: 30px;
-    margin: 1rem 0;
+    margin: 0.2rem 0;
   }
 
   svg.close-nav:hover {

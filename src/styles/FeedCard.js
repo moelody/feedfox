@@ -47,5 +47,10 @@ export default styled.div`
 
   @media screen and (max-width: 530px) {
     width: 98%;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
