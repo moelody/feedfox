@@ -19,7 +19,7 @@ export default () => {
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const urls = matchedFeeds.map((matchedFeed) => {
-    return `http://api.rss2json.com/v1/api.json?rss_url=${matchedFeed.url}&api_key=${apiKey}&count=25`;
+    return `https://api.rss2json.com/v1/api.json?rss_url=${matchedFeed.url}&api_key=${apiKey}&count=25`;
   });
 
   const getFeeds = async (url, index) => {

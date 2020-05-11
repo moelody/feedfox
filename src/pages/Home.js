@@ -15,7 +15,7 @@ const Home = () => {
 
   const urls = userFeeds.map(
     (userFeed) =>
-      `http://api.rss2json.com/v1/api.json?rss_url=${userFeed.url}&api_key=${apiKey}&count=25`
+      `https://api.rss2json.com/v1/api.json?rss_url=${userFeed.url}&api_key=${apiKey}&count=25`
   );
 
   const getFeeds = async (url, index) => {

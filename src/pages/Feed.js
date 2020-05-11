@@ -21,7 +21,7 @@ const Feed = () => {
     const {
       data: { items },
     } = await axios.get(
-      `http://api.rss2json.com/v1/api.json?rss_url=${match[0].url}&api_key=${apiKey}&count=25`
+      `https://api.rss2json.com/v1/api.json?rss_url=${match[0].url}&api_key=${apiKey}&count=25`
     );
     setItems(items);
   };
