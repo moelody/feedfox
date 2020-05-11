@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   padding: 1rem;
   box-shadow: ${(props) => props.theme.bs1};
   background: ${(props) => props.theme.black};
-  height: 140px;
   width: 390px;
   margin: 1rem 0;
 
@@ -41,6 +40,18 @@ const Wrapper = styled.div`
 
   svg {
     fill: ${(props) => props.theme.accent};
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 98%;
+
+    form {
+      display: block;
+    }
+
+    svg {
+      margin-top: 1rem;
+    }
   }
 `;
 

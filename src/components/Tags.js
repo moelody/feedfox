@@ -17,6 +17,11 @@ const Wrapper = styled.div`
     top: 5px;
     margin-right: 0.5rem;
   }
+
+  @media screen and (max-width: 400px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 const Tags = ({ setNavOpen }) => {

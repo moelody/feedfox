@@ -11,7 +11,7 @@ const MenuNav = styled(motion.nav)`
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background: ${(props) => props.theme.bg};
   z-index: 99;

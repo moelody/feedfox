@@ -64,4 +64,11 @@ export default createGlobalStyle`
 		font-size: 0.95rem;
 	}
 }
+
+@media screen and (max-width: 400px) {
+	body {
+		margin-left: 3%;
+		font-size: 0.9rem;
+	}
+}
 `;
