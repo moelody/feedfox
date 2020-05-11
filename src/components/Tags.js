@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -36,18 +36,23 @@ const Wrapper = styled.div`
 
 const Tags = ({ setNavOpen }) => {
   const { userFeeds } = useContext(FeedContext);
+  const [filteredTags, setFilteredTags] = useState([]);
 
-  const tagList = userFeeds.map((userFeed) => userFeed.tags);
-  let tags = [].concat.apply([], tagList);
-  tags = [...new Set(tags)];
-
-  const [filteredTags, setFilteredTags] = useState(tags);
+  const getTags = () => {
+    const tagList = userFeeds.map((userFeed) => userFeed.tags);
+    let tags = [].concat.apply([], tagList);
+    return [...new Set(tags)];
+  };
 
   const closeNav = () => {
     if (setNavOpen) setNavOpen(false);
   };
 
   const shuffleTags = () => setFilteredTags([...shuffle(filteredTags)]);
+
+  useEffect(() => {
+    setFilteredTags(getTags());
+  }, [userFeeds]);
 
   return (
     <Wrapper>
