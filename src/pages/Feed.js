@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import FeedItem from "../components/FeedItem";
 import { FeedContext } from "../context/FeedContext";
 import { slugify } from "../utils";
-import { API_KEY, COUNT } from "../config";
 import Header from "../components/Header";
 
 const Feed = () => {
@@ -17,11 +16,12 @@ const Feed = () => {
     return title === feed;
   });
 
+  const apiKey = process.env.REACT_APP_API_KEY;
   const getFeedItems = async () => {
     const {
       data: { items },
     } = await axios.get(
-      `http://api.rss2json.com/v1/api.json?rss_url=${match[0].url}&api_key=${API_KEY}&count=${COUNT}`
+      `http://api.rss2json.com/v1/api.json?rss_url=${match[0].url}&api_key=${apiKey}&count=25`
     );
     setItems(items);
   };

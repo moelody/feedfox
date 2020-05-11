@@ -3,14 +3,12 @@
 FeedFox is a modern RSS reader that allows you to play youtube videos, listen to podcasts, download torrents, browser reddit, twitter and view cat GIFs 😾
 
 # Running it locally
+You need to create a .env file at the root of the project. 
 
-You need to have the file 'index.js' located in src/config/index.js.
-
-The contents of the file should look this:
+It contents should look like this:
 
 ```javascript
-export const API_KEY = "KEYHERE"  // get it from here: https://rss2json.com/sign-up
-export const COUNT = 25  // amount of feeds to display
+REACT_APP_API_KEY = "KEYHERE"  // get it from here: https://rss2json.com/sign-up
 ```
 Then run <code>npm install && npm run start</code>
 

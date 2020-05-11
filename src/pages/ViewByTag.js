@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { FeedContext } from "../context/FeedContext";
 import FeedList from "../components/FeedList";
-import { API_KEY, COUNT } from "../config";
 import Header from "../components/Header";
 import NoFeeds from "../components/NoFeeds";
 
@@ -17,8 +16,10 @@ export default () => {
   const matchedFeeds = userFeeds.filter((userFeed) =>
     userFeed.tags.includes(tag)
   );
+
+  const apiKey = process.env.REACT_APP_API_KEY;
   const urls = matchedFeeds.map((matchedFeed) => {
-    return `http://api.rss2json.com/v1/api.json?rss_url=${matchedFeed.url}&api_key=${API_KEY}&count=${COUNT}`;
+    return `http://api.rss2json.com/v1/api.json?rss_url=${matchedFeed.url}&api_key=${apiKey}&count=25`;
   });
 
   const getFeeds = async (url, index) => {
