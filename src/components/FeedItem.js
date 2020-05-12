@@ -56,17 +56,9 @@ const FeedItem = ({ item }) => {
               </Link>
 
               <div className="feed-info">
-                <Link
-                  to={{
-                    pathname: `${feed}/${titleSlug}`,
-                    item,
-                  }}
-                >
-                  {item.author && <span>{author}</span>}
-                  {item.author && <span>·</span>}
-
-                  <span>{timeSince(item.pubDate)} ago</span>
-                </Link>
+                {item.author && <span>{author}</span>}
+                {item.author && <span>·</span>}
+                <span>{timeSince(item.pubDate)} ago</span>
               </div>
             </div>
 

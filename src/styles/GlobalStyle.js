@@ -4,7 +4,6 @@ export default createGlobalStyle`
 	html {
 		font-size: 16px;
 		box-sizing: border-box;
-		overflow: hidden;
 	}
 
 	*, *:before, *:after {

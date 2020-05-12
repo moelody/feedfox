@@ -18,7 +18,7 @@ const Wrapper = styled.h3`
 const LoadJson = () => {
   return (
     <Wrapper>
-      <a href="https://drive.google.com/file/d/1io4cwvR35uoNI1qJF0ToueoiJFqwkZ6r/view">
+      <a href="https://drive.google.com/file/d/1NH6UsKu6xEoK_A3dsvV94b4k_jF7CXiN/view">
         <LoadIcon />
         <span>Try Feed</span>
       </a>
