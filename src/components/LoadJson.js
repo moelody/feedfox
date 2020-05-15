@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { toast } from "react-toastify";
 import { LoadIcon } from "./Icons";
 
 const Wrapper = styled.h3`

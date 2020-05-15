@@ -7,13 +7,12 @@ export default styled.button`
   border: 1px solid ${(props) => props.theme.accent};
   color: ${(props) => props.theme.white};
   border-radius: 50px;
-  font-size: 1rem;
+  // font-size: 1rem;
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
   box-shadow: ${(props) => props.theme.bs1};
-  margin-top: 1rem;
 
   svg {
     position: relative;
