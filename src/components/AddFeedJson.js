@@ -37,16 +37,15 @@ export default () => {
       try {
         const userFeeds = JSON.parse(fr.result);
         const type = Object.prototype.toString.call(userFeeds);
-        console.log(type);
 
         // update the context and close the nav if on mobile
         if (type !== "[object Array]")
-          return toast.error("The JSON structure failed to match 😭");
+          return toast.error("The JSON structure seems to be wrong");
 
         setUserFeeds(userFeeds);
-        toast.success("Your feeds have been updated 🥳");
+        toast.success("Your feeds have been updated");
       } catch (err) {
-        return toast.error("The file is not valid JSON 😭");
+        return toast.error("The file is not valid JSON");
       }
     });
     fr.readAsText(e.target.files[0]);

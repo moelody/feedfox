@@ -67,7 +67,7 @@ const AddFeed = ({ setNavOpen }) => {
     e.preventDefault();
 
     if (!title.value || !url.value)
-      return toast.error("You need to enter the title and url 😭");
+      return toast.error("You need to enter the title and url");
 
     let tagList = tags.value ? tags.value.split(",") : [];
     tagList = tagList.map((tag) => tag.trim());
@@ -79,7 +79,7 @@ const AddFeed = ({ setNavOpen }) => {
         userFeed.url.includes(url.value.trim())
     );
     if (match.length)
-      return toast.error("The title or url is already present 😭");
+      return toast.error("The title or url is already present");
 
     // notify the user if the url is not valid rss
     try {

@@ -21,9 +21,9 @@ export default () => (
     <Layout>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/tags/:tag" component={ViewByTag} />
-        <Route path="/:feed/:feedTitle" component={ViewFeed} />
         <Route path="/:feed" component={Feed} />
+        <Route path="/:feed/:feedTitle" component={ViewFeed} />
+        <Route path="/tags/:tag" component={ViewByTag} />
       </Switch>
       <SideBar>
         <AddFeed />

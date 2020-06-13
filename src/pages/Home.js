@@ -7,11 +7,9 @@ import NoFeeds from "../components/NoFeeds";
 
 const Home = () => {
   const { userFeeds } = useContext(FeedContext);
-
   const [feeds, setFeeds] = useState([]);
 
   const apiKey = process.env.REACT_APP_API_KEY;
-
   const urls = userFeeds.map(
     (userFeed) =>
       `https://api.rss2json.com/v1/api.json?rss_url=${userFeed.url}&api_key=${apiKey}&count=25`
