@@ -26,7 +26,7 @@ const FeedItem = ({ item }) => {
             item,
           }}
         >
-					<h3>{title}</h3>
+          <h3>{title}</h3>
         </Link>
 
         <div className="feed-info">

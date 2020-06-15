@@ -78,8 +78,7 @@ const AddFeed = ({ setNavOpen }) => {
         userFeed.title.includes(title.value.trim()) ||
         userFeed.url.includes(url.value.trim())
     );
-    if (match.length)
-      return toast.error("The title or url is already present");
+    if (match.length) return toast.error("The title or url is already present");
 
     // notify the user if the url is not valid rss
     try {

@@ -12,12 +12,10 @@ const Feed = () => {
   const { feed } = useParams();
   const { userFeeds } = useContext(FeedContext);
 
-
   const match = userFeeds.find((userFeed) => {
     const title = slugify(userFeed.title);
     return title === feed;
   });
-
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const getFeedItems = async () => {

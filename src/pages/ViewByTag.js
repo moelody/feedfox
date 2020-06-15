@@ -28,7 +28,7 @@ export default () => {
 
   useEffect(() => {
     setFeeds([]);
-		console.log('hi')
+    console.log("hi");
     urls.forEach((url, index) => getFeeds(url, index));
   }, [tag, userFeeds]);
 
