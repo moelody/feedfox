@@ -8,9 +8,7 @@ import NoFeeds from "../components/NoFeeds";
 
 export default () => {
   const { tag } = useParams();
-
   const { userFeeds } = useContext(FeedContext);
-
   const [feeds, setFeeds] = useState([]);
 
   const matchedFeeds = userFeeds.filter((userFeed) =>
@@ -30,8 +28,9 @@ export default () => {
 
   useEffect(() => {
     setFeeds([]);
+		console.log('hi')
     urls.forEach((url, index) => getFeeds(url, index));
-  }, [userFeeds, tag]);
+  }, [tag, userFeeds]);
 
   return (
     <div>

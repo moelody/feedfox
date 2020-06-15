@@ -12,18 +12,20 @@ const Feed = () => {
   const { feed } = useParams();
   const { userFeeds } = useContext(FeedContext);
 
-  const match = userFeeds.filter((userFeed) => {
+
+  const match = userFeeds.find((userFeed) => {
     const title = slugify(userFeed.title);
     return title === feed;
   });
 
+
   const apiKey = process.env.REACT_APP_API_KEY;
   const getFeedItems = async () => {
-    if (!match.length) return null;
+    if (!match.url) return null;
     const {
       data: { items },
     } = await axios.get(
-      `https://api.rss2json.com/v1/api.json?rss_url=${match[0].url}&api_key=${apiKey}&count=25`
+      `https://api.rss2json.com/v1/api.json?rss_url=${match.url}&api_key=${apiKey}&count=25`
     );
     setItems(items);
   };
@@ -35,7 +37,7 @@ const Feed = () => {
   return (
     <div>
       <Header />
-      {match.length ? (
+      {match.url ? (
         items.map((item) => <FeedItem key={item.title} item={item} />)
       ) : (
         <NotFound />

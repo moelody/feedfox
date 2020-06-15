@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
   .tags {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr)
   }
 
   h4 {
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     fill: ${(props) => props.theme.accent};
     position: relative;
     top: 5px;
-    margin-right: 0.5rem;
+    margin-right: 0.2rem;
   }
 `;
 
