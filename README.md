@@ -1,10 +1,10 @@
 # FeedFox
 
-FeedFox is a modern RSS reader that allows you to play youtube videos, listen to podcasts, download torrents, browser reddit, twitter and view cat GIFs 😾
+FeedFox is an modern RSS reader that allows you to read blogs, play youtube videos, listen to podcasts, download torrents, browse reddit and twitter.
 
-Checkout 👉 [FeedFox](https://feedfox.netlify.com)
+[Check out the deployed site](https://feedfox.netlify.com)
 
-# Running it locally
+## Running it locally
 You need to create a .env file at the root of the project. 
 
 It contents should look like this:
@@ -14,20 +14,22 @@ REACT_APP_API_KEY = "KEYHERE"  // get it from here: https://rss2json.com/sign-up
 ```
 Then run <code>npm install && npm run start</code>
 
-# UI
+## UI
 
-## Dark
+### Home (dark theme)
+![Home dark](screenshots/home.png)
 
-![Dark](screenshots/dark-theme-stuckmann.png)
+### Home (light theme)
+![Home light](screenshots/light.png)
 
-## Light
+### Individual Feed
+![Individual Feed](screenshots/individual_feed.png)
 
-![Light](screenshots/light-theme-stripe.png)
+### Feed
+![Feed](screenshots/view_feed.png)
 
-## Mobile layout
-![Dark](screenshots/mobile-dark-theme.png)    ![Light](screenshots/mobile-light-theme.png)
+### View Feed By Tag
+![View Feed By Tag](screenshots/view_feed_by_tag.png)
 
-# TODO
-
-1. Mobile layout [DONE🥳]
-2. Better podcast player
+### Reading blogs
+![Blog](screenshots/blog.png)
