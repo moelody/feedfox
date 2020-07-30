@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LinkIcon } from "./Icons";
 import { slugify } from "../utils";
-import FeedCard from "../styles/FeedCard";
+import FeedList from "../styles/FeedList";
 import RemoveFeed from "./RemoveFeed";
 
 const Feed = ({ feed: { items, feed, meta } }) => {
   const slug = slugify(meta.title);
 
   return (
-    <FeedCard>
+    <FeedList>
       <div>
         <div className="title-trash">
           <Link to={`/${slug}`}>
@@ -29,7 +29,7 @@ const Feed = ({ feed: { items, feed, meta } }) => {
       <a href={feed.link} target="_blank" rel="noopener noreferrer">
         <LinkIcon />
       </a>
-    </FeedCard>
+    </FeedList>
   );
 };
 

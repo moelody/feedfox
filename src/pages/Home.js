@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import rssjson from "../utils/rssjson";
 import { FeedContext } from "../context/FeedContext";
 import FeedList from "../components/FeedList";
 import Header from "../components/Header";
@@ -9,18 +9,16 @@ const Home = () => {
   const { userFeeds } = useContext(FeedContext);
   const [feeds, setFeeds] = useState([]);
 
-  const apiKey = process.env.REACT_APP_API_KEY;
   const urls = userFeeds.map(
-    (userFeed) =>
-      `https://api.rss2json.com/v1/api.json?rss_url=${userFeed.url}&api_key=${apiKey}&count=25`
+    (userFeed) => userFeed.url
   );
 
   const getFeeds = async (url, index) => {
-    const { data } = await axios.get(url);
+    const data = await rssjson(url);
     data.meta = userFeeds[index];
     setFeeds((feeds) => [...feeds, data]);
   };
-
+  
   useEffect(() => {
     setFeeds([]);
     urls.forEach((url, index) => getFeeds(url, index));
@@ -30,11 +28,13 @@ const Home = () => {
   return (
     <div>
       <Header />
-      {!urls.length ? (
-        <NoFeeds text="Add feeds to consume your content" />
-      ) : (
-        <FeedList feeds={feeds} />
-      )}
+      <div className="mainview">
+        {!urls.length ? (
+          <NoFeeds text="Add feeds to consume your content" />
+        ) : (
+          <FeedList feeds={feeds} />
+        )}
+      </div>
     </div>
   );
 };

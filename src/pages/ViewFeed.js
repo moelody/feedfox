@@ -46,6 +46,8 @@ export default ({ location: { item } }) => {
     ytId = getYtId(item.guid);
   }
 
+  const pixivFeed = item && item.link.includes("pixiv.net");
+
   const twitterFeed = item && item.guid && item.guid.includes("twitter.com");
   let twitterImg = "";
   if (twitterFeed) {
@@ -61,59 +63,67 @@ export default ({ location: { item } }) => {
   return (
     <div>
       <Header />
-      {!item ? (
-        <NotFound />
-      ) : (
-        <Wrapper>
-          {!twitterFeed && <h3>{item.title.replace(/&amp;?/, "&")}</h3>}
-
-          {redditImg && (
-            <img className="reddit-img" src={redditImg} alt="reddit" />
-          )}
-
-          {twitterImg && (
-            <img className="twitter-img" src={twitterImg} alt="twitter" />
-          )}
-
-          {item.enclosure &&
-            item.enclosure.type &&
-            item.enclosure.type === "audio/mpeg" && (
-              <Player url={item.enclosure.link} />
+      <div className="mainview">
+        {!item ? (
+          <NotFound />
+        ) : (
+          <Wrapper>
+            {!twitterFeed && <h3>{item.title.replace(/&amp;?/, "&")}</h3>}
+  
+            {redditImg && (
+              <img className="reddit-img" src={redditImg} alt="reddit" />
             )}
-
-          <Content
-            className="content"
-            dangerouslySetInnerHTML={{ __html: item.content }}
-          />
-
-          {torrentFeed && (
-            <Button>
-              <a href={item.enclosure && item.enclosure.link}>
-                Download <MagnetIcon />
-              </a>
-            </Button>
-          )}
-
-          {ytId && (
-            <iframe
-              src={`https://www.youtube.com/embed/${ytId}`}
-              frameBorder="0"
-              width="100%"
-              height="400px"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title="video"
+  
+            {twitterImg && (
+              <img className="twitter-img" src={twitterImg} alt="twitter" />
+            )}
+  
+            {pixivFeed && (
+              item.thumbnail.map((url) =>
+                <img className="pixiv-img" src={url} alt="pixiv" width="30%"/>
+              )
+            )}
+  
+            {item.enclosure &&
+              item.enclosure.type &&
+              item.enclosure.type === "audio/mpeg" && (
+                <Player url={item.enclosure.link} />
+              )}
+  
+            <Content
+              className="content"
+              dangerouslySetInnerHTML={{ __html: item.content }}
             />
-          )}
-          {ytId && (
-            <Button>
-              <a href={item.link}>
-                View on YouTube <LeftArrow />
-              </a>
-            </Button>
-          )}
-        </Wrapper>
-      )}
+  
+            {torrentFeed && (
+              <Button>
+                <a href={item.enclosure && item.enclosure.link}>
+                  Download <MagnetIcon />
+                </a>
+              </Button>
+            )}
+  
+            {ytId && (
+              <iframe
+                src={`https://www.youtube.com/embed/${ytId}`}
+                frameBorder="0"
+                width="100%"
+                height="400px"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="video"
+              />
+            )}
+            {ytId && (
+              <Button>
+                <a href={item.link}>
+                  View on YouTube <LeftArrow />
+                </a>
+              </Button>
+            )}
+          </Wrapper>
+        )}
+      </div>
     </div>
   );
 };

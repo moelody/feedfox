@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import axios from "axios";
+import rssjson from "../utils/rssjson";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { FeedContext } from "../context/FeedContext";
@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   padding: 1rem;
   box-shadow: ${(props) => props.theme.bs1};
   background: ${(props) => props.theme.black};
-  width: 390px;
   margin: 1rem 0;
 
   form {
@@ -82,10 +81,7 @@ const AddFeed = ({ setNavOpen }) => {
 
     // notify the user if the url is not valid rss
     try {
-      const apiKey = process.env.REACT_APP_API_KEY;
-      const res = await axios.get(
-        `https://api.rss2json.com/v1/api.json?rss_url=${url.value.trim()}&api_key=${apiKey}&count=25`
-      );
+      const res = await rssjson(url.value.trim());
     } catch (err) {
       return toast.error("The url is not valid rss 😭");
     }

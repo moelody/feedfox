@@ -14,7 +14,7 @@ export default createGlobalStyle`
 
 	body {
 		margin: 1rem 1rem 1rem 0;
-		margin-left: 10%;
+		margin-left: 6%;
 		font-family: ${(props) => props.theme.font};
 		background: ${(props) => props.theme.bg};
 		color: ${(props) => props.theme.color};
@@ -52,7 +52,12 @@ export default createGlobalStyle`
 		color: ${(props) => props.theme.light};
 		letter-spacing: 1px;
 		margin-bottom: 1.5rem;
-	}
+  }
+  
+  .mainview {
+    margin-top: 15px;
+    margin-right: 30px;
+  }
 
   input:focus, textarea:focus, button:focus {
 		outline: none;
@@ -62,7 +67,10 @@ export default createGlobalStyle`
 	body {
 		margin-left: 3%;
 		font-size: 0.95rem;
-	}
+  }
+  .mainview {
+    margin: auto;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -70,5 +78,8 @@ export default createGlobalStyle`
 		margin-left: 3%;
 		font-size: 0.9rem;
 	}
+  .mainview {
+    margin: auto;
+  }
 }
 `;

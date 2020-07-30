@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import rssjson from "../utils/rssjson";
 import { FeedContext } from "../context/FeedContext";
 import FeedList from "../components/FeedList";
 import Header from "../components/Header";
@@ -15,13 +15,12 @@ export default () => {
     userFeed.tags.includes(tag)
   );
 
-  const apiKey = process.env.REACT_APP_API_KEY;
   const urls = matchedFeeds.map((matchedFeed) => {
-    return `https://api.rss2json.com/v1/api.json?rss_url=${matchedFeed.url}&api_key=${apiKey}&count=25`;
+    return matchedFeed.url;
   });
 
   const getFeeds = async (url, index) => {
-    const { data } = await axios.get(url);
+    const data = await rssjson(url);
     data.meta = matchedFeeds[index];
     setFeeds((feeds) => [...feeds, data]);
   };
@@ -35,11 +34,13 @@ export default () => {
   return (
     <div>
       <Header />
-      {!urls.length ? (
-        <NoFeeds text="No feeds exist for this tag, add a new one" />
-      ) : (
-        <FeedList feeds={feeds} />
-      )}
+        <div className="mainview">
+          {!urls.length ? (
+            <NoFeeds text="No feeds exist for this tag, add a new one" />
+          ) : (
+            <FeedList feeds={feeds} />
+          )}
+      </div>
     </div>
   );
 };

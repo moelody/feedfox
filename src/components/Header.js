@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ToggleTheme from "./ToggleTheme";
 import ChangeAccent from "./ChangeAccent";
+import ToggleView from "./ToggleView";
 import Nav from "./Nav";
 import { NavIcon } from "./Icons";
 
@@ -47,6 +48,7 @@ const Header = () => {
         <Link to="/">
           <h1>FeedFox</h1>
         </Link>
+        <ToggleView />
         <ToggleTheme />
         <ChangeAccent />
       </Wrapper>

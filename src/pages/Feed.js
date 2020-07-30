@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
+import styled from "styled-components";
+import rssjson from "../utils/rssjson";
 import { useParams } from "react-router-dom";
 import FeedItem from "../components/FeedItem";
 import { FeedContext } from "../context/FeedContext";
@@ -7,24 +8,31 @@ import { slugify } from "../utils";
 import Header from "../components/Header";
 import NotFound from "../components/NotFound";
 
+import { ViewContext } from "../context/ViewContext";
+
 const Feed = () => {
   const [items, setItems] = useState([]);
   const { feed } = useParams();
   const { userFeeds } = useContext(FeedContext);
+  const { view } = useContext(ViewContext);
+
+  const MainView = styled.div`
+    {
+      ${view === "Zmage" ? "": "column-count: 3;"} //多列的列数
+    }
+    @media screen and (max-width: 1000px) {
+      ${view === "Zmage" ? "": "column-count: 1;"} //多列的列数
+    }
+  `;
 
   const match = userFeeds.find((userFeed) => {
     const title = slugify(userFeed.title);
     return title === feed;
   });
 
-  const apiKey = process.env.REACT_APP_API_KEY;
   const getFeedItems = async () => {
     if (!match.url) return null;
-    const {
-      data: { items },
-    } = await axios.get(
-      `https://api.rss2json.com/v1/api.json?rss_url=${match.url}&api_key=${apiKey}&count=25`
-    );
+    const { items } = await rssjson(match.url);
     setItems(items);
   };
 
@@ -35,11 +43,13 @@ const Feed = () => {
   return (
     <div>
       <Header />
-      {match.url ? (
-        items.map((item) => <FeedItem key={item.title} item={item} />)
-      ) : (
-        <NotFound />
-      )}
+      <MainView className="mainview">
+        {match.url ? (
+          items.map((item, index) => <FeedItem key={index + item.title} item={item} />)
+        ) : (
+          <NotFound />
+        )}
+      </MainView>
     </div>
   );
 };
