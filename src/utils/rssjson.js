@@ -87,7 +87,7 @@ const parser = json => {
   return rss
 }
 
-module.exports = url => {
+export default url => {
   return new Promise(async (resolve, reject) => {
     if (!url) {
       return reject(new TypeError('`url` is required'))
