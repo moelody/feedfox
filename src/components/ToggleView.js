@@ -8,7 +8,7 @@ const ToggleField = () => {
   const [currentView, setCurrentView] = useState(
     localStorage.getItem("viewMode")
   );
-  const { view, setView } = useContext(ViewContext);
+  const { setView } = useContext(ViewContext);
   const { theme } = useContext(ThemeContext);
 
   const toggleView = () => {
