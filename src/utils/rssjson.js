@@ -22,7 +22,7 @@ const parser = json => {
   }
 
   if (channel.link) {
-    feed.url = channel.link[0]
+    feed.link = channel.link[0]
   }
 
   if (channel.image) {
