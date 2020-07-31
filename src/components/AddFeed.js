@@ -65,6 +65,16 @@ const AddFeed = ({ setNavOpen }) => {
   const handleAddFeed = async (e) => {
     e.preventDefault();
 
+    try {
+      const feeds = JSON.parse(document.querySelector('.sidebar input:nth-child(2)').value.replace(/&quot;/g, "\""));
+      const type = Object.prototype.toString.call(feeds);
+
+      if (type === "[object Array]") {
+        setUserFeeds(feeds);
+        return toast.success("Your feeds have been updated");
+      }
+    } catch (err) {console.log(err)}
+
     if (!title.value || !url.value)
       return toast.error("You need to enter the title and url");
 

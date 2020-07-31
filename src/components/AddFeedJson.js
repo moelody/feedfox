@@ -30,23 +30,6 @@ const Wrapper = styled.div`
 export default () => {
   const { setUserFeeds } = useContext(FeedContext);
 
-  // 暴露一个方法供quicker使用
-  window.addFeedJson = (json) => {
-    try {
-      const userFeeds = JSON.parse(json);
-      const type = Object.prototype.toString.call(userFeeds);
-
-      // update the context and close the nav if on mobile
-      if (type !== "[object Array]")
-        return toast.error("The JSON structure seems to be wrong");
-
-      setUserFeeds(userFeeds);
-      toast.success("Your feeds have been updated");
-    } catch (err) {
-      return toast.error("The file is not valid JSON");
-    }
-  }
-
   const onChange = (e) => {
     const fr = new FileReader();
 
