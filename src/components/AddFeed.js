@@ -73,7 +73,7 @@ const AddFeed = ({ setNavOpen }) => {
         setUserFeeds(feeds);
         return toast.success("Your feeds have been updated");
       }
-    } catch (err) {console.log(err)}
+    } catch (err) {}
 
     if (!title.value || !url.value)
       return toast.error("You need to enter the title and url");
